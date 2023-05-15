@@ -24,4 +24,14 @@ public class UserController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+
+	@GetMapping("/{email}/{passwd}")
+	public ResponseEntity<Optional<User>> auth(@PathVariable String email, @PathVariable String passwd) {
+		try {
+			Optional<User> user = service.login(email, passwd);
+			return new ResponseEntity<>(user, HttpStatus.OK);
+		} catch (NoSuchElementException e) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
 }
