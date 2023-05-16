@@ -34,4 +34,14 @@ public class UserController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+	@PostMapping("")
+	public ResponseEntity<?> add(@RequestBody User user) {
+		try {
+			User newUser = service.save(user);
+			return new ResponseEntity<>(newUser.getId(), HttpStatus.CREATED);
+		} catch (NoSuchElementException e) {
+			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+
+		}
+	}
 }
