@@ -22,13 +22,11 @@ public class Address implements java.io.Serializable {
 	private String city;
 	private Integer cp;
 	private Set<Order> orders = new HashSet<Order>(0);
-	private Set<Restaurant> restaurants = new HashSet<Restaurant>(0);
 
 	public Address() {
 	}
 
-	public Address(User user, String address, Integer number, String name, String city, Integer cp, Set<Order> orders,
-			Set<Restaurant> restaurants) {
+	public Address(User user, String address, Integer number, String name, String city, Integer cp, Set<Order> orders) {
 		this.user = user;
 		this.address = address;
 		this.number = number;
@@ -36,7 +34,6 @@ public class Address implements java.io.Serializable {
 		this.city = city;
 		this.cp = cp;
 		this.orders = orders;
-		this.restaurants = restaurants;
 	}
 
 	@Id
@@ -113,15 +110,6 @@ public class Address implements java.io.Serializable {
 
 	public void setOrders(Set<Order> orders) {
 		this.orders = orders;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "address")
-	public Set<Restaurant> getRestaurants() {
-		return this.restaurants;
-	}
-
-	public void setRestaurants(Set<Restaurant> restaurants) {
-		this.restaurants = restaurants;
 	}
 
 }

@@ -16,7 +16,7 @@ public class UserController {
 	@Autowired
 	UserService service;
 
-	@GetMapping("/{id}")
+	@GetMapping("/id={id}")
 	public ResponseEntity<Optional<User>> findUserById(@PathVariable Integer id) {
 		try {
 			return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
@@ -25,7 +25,7 @@ public class UserController {
 		}
 	}
 
-	@GetMapping("/{email}/{passwd}")
+	@GetMapping("/email={email}/password={passwd}")
 	public ResponseEntity<Optional<User>> auth(@PathVariable String email, @PathVariable String passwd) {
 		try {
 			Optional<User> user = service.login(email, passwd);
@@ -34,6 +34,7 @@ public class UserController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+
 	@PostMapping("")
 	public ResponseEntity<?> add(@RequestBody User user) {
 		try {
@@ -42,6 +43,21 @@ public class UserController {
 		} catch (NoSuchElementException e) {
 			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
 
+		}
+	}
+
+	@PutMapping("/email={email}/password={password}")
+	public ResponseEntity<?> update(@PathVariable String email, @PathVariable String password) {
+		try {
+			User user = service.findByEmail(email);
+			if (user != null){
+				user.setPassword(password);
+				service.save(user);
+				return new ResponseEntity<>(HttpStatus.OK);
+			}
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		} catch (NoSuchElementException e) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 }
