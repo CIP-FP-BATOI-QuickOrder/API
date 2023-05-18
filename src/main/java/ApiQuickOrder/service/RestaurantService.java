@@ -20,4 +20,8 @@ public class RestaurantService {
         return repository.findAll();
     }
 
+    public List<Restaurant> search(String search){
+        search = '%' + search + "%";
+        return repository.search(search);
+    }
 }

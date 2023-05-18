@@ -23,4 +23,9 @@ public class RestaurantController {
 	public List<Restaurant> findUserById() {
 		return service.findAll();
 	}
+
+	@GetMapping("/search={search}")
+	public List<Restaurant> search(@PathVariable String search) {
+		return service.search(search);
+	}
 }
