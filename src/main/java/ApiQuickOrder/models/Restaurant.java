@@ -29,6 +29,8 @@ public class Restaurant implements java.io.Serializable {
 	private String photo;
 	private String city;
 	private String direction;
+	private Integer deliveryTime;
+	private Integer deliveryPrice;
 	private Set<Order> orders = new HashSet(0);
 	private Set<Product> products = new HashSet(0);
 
@@ -36,7 +38,7 @@ public class Restaurant implements java.io.Serializable {
 	}
 
 	public Restaurant(String name, String nif, String password, String photo, String city, String direction, Set<Order> orders,
-					  Set<Product> products) {
+					  Set<Product> products, Integer deliveryPrice, Integer deliveryTime) {
 		this.name = name;
 		this.nif = nif;
 		this.password = password;
@@ -45,6 +47,8 @@ public class Restaurant implements java.io.Serializable {
 		this.direction = direction;
 		this.orders = orders;
 		this.products = products;
+		this.deliveryPrice = deliveryPrice;
+		this.deliveryTime = deliveryTime;
 	}
 
 	@Id
@@ -131,4 +135,21 @@ public class Restaurant implements java.io.Serializable {
 		this.products = products;
 	}
 
+	@Column(name = "delivery_time")
+	public Integer getDeliveryTime() {
+		return this.deliveryTime;
+	}
+
+	public void setDeliveryTime(Integer deliveryTime) {
+		this.deliveryTime = deliveryTime;
+	}
+
+	@Column(name = "delivery_price")
+	public Integer getDeliveryPrice() {
+		return this.deliveryPrice;
+	}
+
+	public void setDeliveryPrice(Integer deliveryPrice) {
+		this.deliveryPrice = deliveryPrice;
+	}
 }
