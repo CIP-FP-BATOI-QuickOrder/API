@@ -2,6 +2,7 @@ package ApiQuickOrder.models;
 // Generated 19 may 2023 16:02:57 by Hibernate Tools 4.3.6.Final
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 /**
@@ -12,6 +13,7 @@ import jakarta.persistence.*;
 public class Tags implements java.io.Serializable {
 
     private Integer id;
+    @JsonIgnore
     private Restaurant restaurant;
     private String name;
 
