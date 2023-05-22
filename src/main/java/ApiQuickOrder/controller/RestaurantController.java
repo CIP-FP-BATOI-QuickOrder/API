@@ -28,4 +28,14 @@ public class RestaurantController {
 	public List<Restaurant> search(@PathVariable String search) {
 		return service.search(search);
 	}
+
+	@GetMapping("rand={limit}")
+	public List<Restaurant> rand(@PathVariable Integer limit) {
+		return service.rand(limit);
+	}
+
+	@GetMapping("popular={limit}")
+	public List<Restaurant> popular(@PathVariable Integer limit) {
+		return service.populars(limit);
+	}
 }

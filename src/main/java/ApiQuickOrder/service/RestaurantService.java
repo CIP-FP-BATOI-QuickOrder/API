@@ -30,6 +30,16 @@ public class RestaurantService {
         return repository.search(search);
     }
 
+    public List<Restaurant> rand(int limit){
+        updateRatings();
+        return repository.rand(limit);
+    }
+
+    public List<Restaurant> populars(int limit){
+        updateRatings();
+        return repository.populars(limit);
+    }
+
     private void updateRatings() {
         String sql = "UPDATE restaurant r SET r.rating = ( SELECT AVG(rt.rating) FROM ratings rt WHERE rt.restaurant_id = r.id)";
         jdbcTemplate.update(sql);
