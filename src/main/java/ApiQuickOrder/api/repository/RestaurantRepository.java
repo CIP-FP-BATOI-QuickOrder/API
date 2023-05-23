@@ -18,6 +18,6 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
     @Query(value = "SELECT * FROM restaurant r  ORDER BY r.rating DESC limit ?1 ", nativeQuery = true)
     List<Restaurant> populars(int limit);
 
-    @Query(value = "select r.* from restaurant r inner join favorites f on r.id = f.restaurant_id where f.user_id = 1", nativeQuery = true)
+    @Query(value = "select r.* from restaurant r inner join favorites f on r.id = f.restaurant_id where f.user_id = ?1", nativeQuery = true)
     List<Restaurant> getFavorites(int userId);
 }
