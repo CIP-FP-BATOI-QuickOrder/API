@@ -44,4 +44,8 @@ public class RestaurantService {
         String sql = "UPDATE restaurant r SET r.rating = ( SELECT AVG(rt.rating) FROM ratings rt WHERE rt.restaurant_id = r.id)";
         jdbcTemplate.update(sql);
     }
+
+    public List<Restaurant> getFavorites(int userId){
+        return repository.getFavorites(userId);
+    }
 }

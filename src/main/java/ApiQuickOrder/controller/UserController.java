@@ -35,6 +35,15 @@ public class UserController {
 		}
 	}
 
+	@GetMapping("/user={user_id}/restaurant={restaurant_id}")
+	public ResponseEntity<?> isFavorite(@PathVariable int user_id, @PathVariable int restaurant_id) {
+		if (service.isFavorite(user_id, restaurant_id)){
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+	}
+
 	@PostMapping("")
 	public ResponseEntity<?> add(@RequestBody User user) {
 		try {

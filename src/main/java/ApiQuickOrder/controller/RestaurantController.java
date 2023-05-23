@@ -38,4 +38,9 @@ public class RestaurantController {
 	public List<Restaurant> popular(@PathVariable Integer limit) {
 		return service.populars(limit);
 	}
+
+	@GetMapping("/favorites={user_id}")
+	public List<Restaurant> getFavorites(@PathVariable int user_id) {
+		return service.getFavorites(user_id);
+	}
 }
