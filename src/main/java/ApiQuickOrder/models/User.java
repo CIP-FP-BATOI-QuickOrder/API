@@ -22,6 +22,7 @@ public class User implements java.io.Serializable {
 	private String password;
 	private String phone;
 	private Integer credit;
+	private String photo;
 	private Set<Order> orders = new HashSet<>(0);
 	private Set<Address> addresses = new HashSet<>(0);
 
@@ -29,7 +30,7 @@ public class User implements java.io.Serializable {
 	}
 
 	public User(String name, String surname, String email, String password, String phone, Integer credit, Set<Order> orders,
-				Set<Address> addresses) {
+				Set<Address> addresses, String photo) {
 		this.name = name;
 		this.surname = surname;
 		this.email = email;
@@ -38,6 +39,7 @@ public class User implements java.io.Serializable {
 		this.credit = credit;
 		this.orders = orders;
 		this.addresses = addresses;
+		this.photo = photo;
 	}
 
 	@Id
@@ -124,4 +126,12 @@ public class User implements java.io.Serializable {
 		this.addresses = addresses;
 	}
 
+	@Column(name = "photo", length = 10)
+	public String getPhoto() {
+		return this.photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 }

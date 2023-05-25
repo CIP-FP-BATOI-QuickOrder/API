@@ -5,8 +5,14 @@ import ApiQuickOrder.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -67,6 +73,23 @@ public class UserController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} catch (NoSuchElementException e) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
+	@PostMapping("/upload={userId}")
+	public void handleFileUpload(@PathVariable int userId, @RequestPart("photo") MultipartFile file) {
+		System.out.println("Dentro");
+		if (!file.isEmpty()) {
+			try {
+				System.out.println("Dentro");
+				String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+				Path filePath = Path.of("/var/www/html", fileName);
+				Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+				service.updatePhoto(userId, fileName);
+				System.out.println("Dentro");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

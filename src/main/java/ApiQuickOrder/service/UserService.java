@@ -66,4 +66,9 @@ public class UserService {
         jdbcTemplate.update(sql);
     }
 
+    public void updatePhoto(int userId, String photoName) {
+        String sql = "Update user set photo = '" + photoName + "' where id = " + userId + ";";
+        jdbcTemplate.update(sql);
+    }
+
 }

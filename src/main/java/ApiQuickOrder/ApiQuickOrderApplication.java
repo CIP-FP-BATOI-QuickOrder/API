@@ -9,5 +9,4 @@ public class ApiQuickOrderApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ApiQuickOrderApplication.class, args);
 	}
-
 }

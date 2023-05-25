@@ -2,6 +2,7 @@ package ApiQuickOrder.models;
 // Generated 8 may 2023 19:23:56 by Hibernate Tools 4.3.6.Final
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -16,6 +17,7 @@ public class Product implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private Integer id;
+	@JsonIgnore
 	private Restaurant restaurant;
 	private String name;
 	private String photo;
