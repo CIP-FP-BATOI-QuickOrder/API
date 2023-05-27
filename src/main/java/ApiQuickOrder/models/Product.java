@@ -22,21 +22,20 @@ public class Product implements java.io.Serializable {
 	private String name;
 	private String photo;
 	private String description;
-	private Integer price;
-	private Integer stock;
+	private Double price;
+	@JsonIgnore
 	private Set<OrderLine> orderLines = new HashSet<OrderLine>(0);
 
 	public Product() {
 	}
 
-	public Product(Restaurant restaurant, String name, String photo, String description, Integer price, Integer stock,
+	public Product(Restaurant restaurant, String name, String photo, String description, Double price,
 			Set<OrderLine> orderLines) {
 		this.restaurant = restaurant;
 		this.name = name;
 		this.photo = photo;
 		this.description = description;
 		this.price = price;
-		this.stock = stock;
 		this.orderLines = orderLines;
 	}
 
@@ -71,7 +70,7 @@ public class Product implements java.io.Serializable {
 		this.name = name;
 	}
 
-	@Column(name = "photo", length = 50)
+	@Column(name = "photo", length = 100)
 	public String getPhoto() {
 		return this.photo;
 	}
@@ -90,21 +89,12 @@ public class Product implements java.io.Serializable {
 	}
 
 	@Column(name = "price")
-	public Integer getPrice() {
+	public Double getPrice() {
 		return this.price;
 	}
 
-	public void setPrice(Integer price) {
+	public void setPrice(Double price) {
 		this.price = price;
-	}
-
-	@Column(name = "stock")
-	public Integer getStock() {
-		return this.stock;
-	}
-
-	public void setStock(Integer stock) {
-		this.stock = stock;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")

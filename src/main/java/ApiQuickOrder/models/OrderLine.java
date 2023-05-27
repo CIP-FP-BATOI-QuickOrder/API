@@ -15,7 +15,7 @@ public class OrderLine implements java.io.Serializable {
 	private Order order;
 	private Product product;
 	private Integer qty;
-	private Integer price;
+	private Double price;
 	private Integer unitPrice;
 
 	public OrderLine() {
@@ -27,7 +27,7 @@ public class OrderLine implements java.io.Serializable {
 		this.product = product;
 	}
 
-	public OrderLine(OrderLineId id, Order order, Product product, Integer qty, Integer price, Integer unitPrice) {
+	public OrderLine(OrderLineId id, Order order, Product product, Integer qty, Double price, Integer unitPrice) {
 		this.id = id;
 		this.order = order;
 		this.product = product;
@@ -78,11 +78,11 @@ public class OrderLine implements java.io.Serializable {
 	}
 
 	@Column(name = "price")
-	public Integer getPrice() {
+	public Double getPrice() {
 		return this.price;
 	}
 
-	public void setPrice(Integer price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 

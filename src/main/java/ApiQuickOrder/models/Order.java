@@ -21,7 +21,7 @@ public class Order implements java.io.Serializable {
 	private Raider raider;
 	private Restaurant restaurant;
 	private User user;
-	private Integer price;
+	private Double price;
 	private Date deliveryTime;
 	private Integer discount;
 	private Set<OrderLine> orderLines = new HashSet<OrderLine>(0);
@@ -34,7 +34,7 @@ public class Order implements java.io.Serializable {
 		this.user = user;
 	}
 
-	public Order(Address address, Raider raider, Restaurant restaurant, User user, Integer price, Date deliveryTime,
+	public Order(Address address, Raider raider, Restaurant restaurant, User user, Double price, Date deliveryTime,
 			Integer discount, Set<OrderLine> orderLines) {
 		this.address = address;
 		this.raider = raider;
@@ -99,11 +99,11 @@ public class Order implements java.io.Serializable {
 	}
 
 	@Column(name = "price")
-	public Integer getPrice() {
+	public Double getPrice() {
 		return this.price;
 	}
 
-	public void setPrice(Integer price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 

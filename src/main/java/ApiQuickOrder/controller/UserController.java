@@ -78,15 +78,12 @@ public class UserController {
 
 	@PostMapping("/upload={userId}")
 	public void handleFileUpload(@PathVariable int userId, @RequestPart("photo") MultipartFile file) {
-		System.out.println("Dentro");
 		if (!file.isEmpty()) {
 			try {
-				System.out.println("Dentro");
 				String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 				Path filePath = Path.of("/var/www/html", fileName);
 				Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
 				service.updatePhoto(userId, fileName);
-				System.out.println("Dentro");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
