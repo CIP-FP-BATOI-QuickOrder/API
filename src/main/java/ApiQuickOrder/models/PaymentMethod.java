@@ -2,6 +2,7 @@ package ApiQuickOrder.models;
 // Generated 8 may 2023 19:23:56 by Hibernate Tools 4.3.6.Final
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 /**
@@ -13,19 +14,20 @@ public class PaymentMethod implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private Integer id;
+	@JsonIgnore
 	private User user;
-	private Integer creditCart;
+	private String creditCart;
 	private String expirationDate;
-	private String name;
+	private String bank;
 
 	public PaymentMethod() {
 	}
 
-	public PaymentMethod(User user, Integer creditCart, String expirationDate, String name) {
+	public PaymentMethod(User user, String creditCart, String expirationDate, String banck) {
 		this.user = user;
 		this.creditCart = creditCart;
 		this.expirationDate = expirationDate;
-		this.name = name;
+		this.bank = banck;
 	}
 
 	@Id
@@ -51,11 +53,11 @@ public class PaymentMethod implements java.io.Serializable {
 	}
 
 	@Column(name = "creditCart")
-	public Integer getCreditCart() {
+	public String getCreditCart() {
 		return this.creditCart;
 	}
 
-	public void setCreditCart(Integer creditCart) {
+	public void setCreditCart(String creditCart) {
 		this.creditCart = creditCart;
 	}
 
@@ -68,13 +70,13 @@ public class PaymentMethod implements java.io.Serializable {
 		this.expirationDate = expirationDate;
 	}
 
-	@Column(name = "name", length = 50)
-	public String getName() {
-		return this.name;
+	@Column(name = "bank", length = 50)
+	public String getBank() {
+		return this.bank;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setBank(String banck) {
+		this.bank = banck;
 	}
 
 }

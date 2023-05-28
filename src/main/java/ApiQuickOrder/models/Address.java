@@ -1,6 +1,7 @@
 package ApiQuickOrder.models;
 // Generated 8 may 2023 19:23:56 by Hibernate Tools 4.3.6.Final
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -15,12 +16,14 @@ public class Address implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private Integer id;
+	@JsonIgnore
 	private User user;
 	private String address;
 	private Integer number;
 	private String name;
 	private String city;
 	private Integer cp;
+	@JsonIgnore
 	private Set<Order> orders = new HashSet<Order>(0);
 
 	public Address() {

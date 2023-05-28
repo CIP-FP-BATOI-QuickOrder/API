@@ -25,12 +25,13 @@ public class User implements java.io.Serializable {
 	private String photo;
 	private Set<Order> orders = new HashSet<>(0);
 	private Set<Address> addresses = new HashSet<>(0);
+	private Set<PaymentMethod> paymentMethods = new HashSet<>(0);
 
 	public User() {
 	}
 
 	public User(String name, String surname, String email, String password, String phone, Integer credit, Set<Order> orders,
-				Set<Address> addresses, String photo) {
+				Set<Address> addresses, String photo, Set<PaymentMethod> paymentMethods) {
 		this.name = name;
 		this.surname = surname;
 		this.email = email;
@@ -40,6 +41,7 @@ public class User implements java.io.Serializable {
 		this.orders = orders;
 		this.addresses = addresses;
 		this.photo = photo;
+		this.paymentMethods = paymentMethods;
 	}
 
 	@Id
@@ -133,5 +135,14 @@ public class User implements java.io.Serializable {
 
 	public void setPhoto(String photo) {
 		this.photo = photo;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<PaymentMethod> getPaymentMethods() {
+		return this.paymentMethods;
+	}
+
+	public void setPaymentMethods(Set<PaymentMethod> paymentMethods) {
+		this.paymentMethods = paymentMethods;
 	}
 }
