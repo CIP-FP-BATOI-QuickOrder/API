@@ -71,4 +71,8 @@ public class UserService {
         jdbcTemplate.update(sql);
     }
 
+    public User getById(int id){
+        return repository.getReferenceById(id);
+    }
+
 }

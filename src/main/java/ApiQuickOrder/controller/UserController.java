@@ -1,5 +1,6 @@
 package ApiQuickOrder.controller;
 
+import ApiQuickOrder.models.Address;
 import ApiQuickOrder.models.User;
 import ApiQuickOrder.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,6 +88,22 @@ public class UserController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
+	}
+
+	@PostMapping("/{id}")
+	public ResponseEntity<?> update(@RequestBody User user, @PathVariable Integer id) {
+		try {
+			User actualUser = service.getById(id);
+			actualUser.setPassword(user.getPassword());
+			actualUser.setName(user.getName());
+			actualUser.setEmail(user.getEmail());
+			actualUser.setSurname(user.getSurname());
+			actualUser.setPhone(user.getPhone());
+			service.save(actualUser);
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (NoSuchElementException e) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 }
