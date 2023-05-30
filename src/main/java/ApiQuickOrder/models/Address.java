@@ -30,6 +30,16 @@ public class Address implements java.io.Serializable {
     public Address() {
     }
 
+    public Address(User user, String address, Integer number, String name, String city, Integer cp, String addressName) {
+        this.user = user;
+        this.address = address;
+        this.number = number;
+        this.name = name;
+        this.city = city;
+        this.cp = cp;
+        this.addressName = addressName;
+    }
+
     public Address(User user, String address, Integer number, String name, String city, Integer cp, Set<Order> orders, String addressName) {
         this.user = user;
         this.address = address;

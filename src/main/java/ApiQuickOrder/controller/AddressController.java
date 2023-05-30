@@ -2,6 +2,7 @@ package ApiQuickOrder.controller;
 
 import ApiQuickOrder.models.Address;
 import ApiQuickOrder.service.AddressService;
+import ApiQuickOrder.service.ProductService;
 import ApiQuickOrder.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -16,10 +17,15 @@ import java.util.NoSuchElementException;
 public class AddressController {
     @Autowired
     AddressService service;
+    @Autowired
+    UserService userService;
 
-    @PostMapping("")
-    public ResponseEntity<?> add(@RequestBody Address address) {
-        Address newAddress = service.save(address);
+    @PostMapping("/user={userId}/name={name}/city={city}/cp={cp}/number={number}/address={address}/name={addressName}")
+    public ResponseEntity<?> add(@PathVariable Integer userId, @PathVariable String name, @PathVariable Integer number,
+                                 @PathVariable String city, @PathVariable Integer cp, @PathVariable String address,
+                                 @PathVariable String addressName) {
+        Address newAddress = new Address(userService.getById(userId), address, number, name, city, cp, addressName);
+        newAddress = service.save(newAddress);
         return new ResponseEntity<>(newAddress.getId(), HttpStatus.CREATED);
     }
 
@@ -32,6 +38,7 @@ public class AddressController {
             actualAddress.setCp(address.getCp());
             actualAddress.setName(address.getName());
             actualAddress.setNumber(address.getNumber());
+            actualAddress.setAddressName(address.getAddressName());
             service.save(actualAddress);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (NoSuchElementException e) {
