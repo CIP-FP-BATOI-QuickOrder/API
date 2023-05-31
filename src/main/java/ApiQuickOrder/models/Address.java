@@ -51,6 +51,16 @@ public class Address implements java.io.Serializable {
         this.addressName = addressName;
     }
 
+    public Address(String address, Integer number, String name, String city, Integer cp, Set<Order> orders, String addressName) {
+        this.address = address;
+        this.number = number;
+        this.name = name;
+        this.city = city;
+        this.cp = cp;
+        this.orders = orders;
+        this.addressName = addressName;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 

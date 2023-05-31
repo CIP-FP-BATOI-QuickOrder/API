@@ -19,15 +19,24 @@ public class PaymentMethod implements java.io.Serializable {
 	private String creditCart;
 	private String expirationDate;
 	private String bank;
+	private String name;
 
 	public PaymentMethod() {
 	}
 
-	public PaymentMethod(User user, String creditCart, String expirationDate, String banck) {
+	public PaymentMethod(User user, String creditCart, String expirationDate, String bank, String name) {
 		this.user = user;
 		this.creditCart = creditCart;
 		this.expirationDate = expirationDate;
-		this.bank = banck;
+		this.bank = bank;
+		this.name = name;
+	}
+
+	public PaymentMethod(String creditCart, String expirationDate, String bank, String name) {
+		this.creditCart = creditCart;
+		this.expirationDate = expirationDate;
+		this.bank = bank;
+		this.name = name;
 	}
 
 	@Id
@@ -75,8 +84,17 @@ public class PaymentMethod implements java.io.Serializable {
 		return this.bank;
 	}
 
-	public void setBank(String banck) {
-		this.bank = banck;
+	public void setBank(String bank) {
+		this.bank = bank;
+	}
+
+	@Column(name = "name", length = 100)
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

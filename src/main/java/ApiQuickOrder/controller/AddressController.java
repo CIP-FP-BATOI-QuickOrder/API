@@ -1,6 +1,7 @@
 package ApiQuickOrder.controller;
 
 import ApiQuickOrder.models.Address;
+import ApiQuickOrder.models.PaymentMethod;
 import ApiQuickOrder.service.AddressService;
 import ApiQuickOrder.service.ProductService;
 import ApiQuickOrder.service.UserService;
@@ -20,12 +21,10 @@ public class AddressController {
     @Autowired
     UserService userService;
 
-    @PostMapping("/user={userId}/name={name}/city={city}/cp={cp}/number={number}/address={address}/name={addressName}")
-    public ResponseEntity<?> add(@PathVariable Integer userId, @PathVariable String name, @PathVariable Integer number,
-                                 @PathVariable String city, @PathVariable Integer cp, @PathVariable String address,
-                                 @PathVariable String addressName) {
-        Address newAddress = new Address(userService.getById(userId), address, number, name, city, cp, addressName);
-        newAddress = service.save(newAddress);
+    @PostMapping("/{userId}")
+    public ResponseEntity<?> add(@RequestBody Address address, @PathVariable int userId) {
+        address.setUser(userService.getById(userId));
+        Address newAddress = service.save(address);
         return new ResponseEntity<>(newAddress.getId(), HttpStatus.CREATED);
     }
 

@@ -4,6 +4,7 @@ import ApiQuickOrder.models.Address;
 import ApiQuickOrder.models.PaymentMethod;
 import ApiQuickOrder.service.AddressService;
 import ApiQuickOrder.service.PaymentMethodService;
+import ApiQuickOrder.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -17,9 +18,12 @@ import java.util.NoSuchElementException;
 public class PaymentMethodController {
     @Autowired
     PaymentMethodService service;
+    @Autowired
+    UserService userService;
 
-    @PostMapping("")
-    public ResponseEntity<?> add(@RequestBody PaymentMethod paymentMethod) {
+    @PostMapping("/{userId}")
+    public ResponseEntity<?> add(@RequestBody PaymentMethod paymentMethod, @PathVariable int userId) {
+        paymentMethod.setUser(userService.getById(userId));
         PaymentMethod newPaymentMethod = service.save(paymentMethod);
         return new ResponseEntity<>(newPaymentMethod.getId(), HttpStatus.CREATED);
     }
