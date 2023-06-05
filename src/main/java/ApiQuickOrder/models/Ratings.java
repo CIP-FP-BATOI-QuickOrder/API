@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
 public class Ratings implements java.io.Serializable {
 
 	private RatingsId id;
-	private Integer rating;
+	private Double rating;
 
 	public Ratings() {
 	}
@@ -25,8 +25,12 @@ public class Ratings implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Ratings(RatingsId id, Integer rating) {
+	public Ratings(RatingsId id, Double rating) {
 		this.id = id;
+		this.rating = rating;
+	}
+
+	public Ratings(Double rating){
 		this.rating = rating;
 	}
 
@@ -43,11 +47,11 @@ public class Ratings implements java.io.Serializable {
 	}
 
 	@Column(name = "rating")
-	public Integer getRating() {
+	public Double getRating() {
 		return this.rating;
 	}
 
-	public void setRating(Integer rating) {
+	public void setRating(Double rating) {
 		this.rating = rating;
 	}
 

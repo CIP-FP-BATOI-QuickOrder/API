@@ -48,4 +48,7 @@ public class RestaurantService {
     public List<Restaurant> getFavorites(int userId){
         return repository.getFavorites(userId);
     }
+    public Restaurant getById(int restaurantId){
+        return repository.getById(restaurantId);
+    }
 }
