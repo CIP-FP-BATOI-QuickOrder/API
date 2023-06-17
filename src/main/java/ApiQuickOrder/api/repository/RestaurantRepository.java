@@ -20,4 +20,10 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
 
     @Query(value = "select r.* from restaurant r inner join favorites f on r.id = f.restaurant_id where f.user_id = ?1", nativeQuery = true)
     List<Restaurant> getFavorites(int userId);
+
+    @Query("SELECT r FROM Restaurant r WHERE r.nif = ?1 and r.password = ?2")
+    Restaurant login(String email, String password);
+
+    @Query("SELECT r FROM Restaurant r WHERE r.nif like ?1")
+    Restaurant getByNif(String nif);
 }

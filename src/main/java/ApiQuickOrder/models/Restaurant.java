@@ -15,141 +15,155 @@ import jakarta.persistence.*;
 @Table(name = "restaurant", catalog = "quick_order", uniqueConstraints = @UniqueConstraint(columnNames = "nif"))
 public class Restaurant implements java.io.Serializable {
 
-	private Integer id;
-	private String name;
-	private String nif;
-	private String password;
-	private String photo;
-	private String city;
-	private String direction;
-	private Integer deliveryTime;
-	private Integer deliveryPrice;
-	private double rating;
-	@JsonIgnore
-	private Set<Order> orders = new HashSet<>(0);
-	private Set<Product> products = new HashSet<>(0);
+    private Integer id;
+    private String name;
+    private String nif;
+    private String password;
+    private String photo;
+    private String city;
+    private String direction;
+    private Integer deliveryTime;
+    private Integer deliveryPrice;
+    private double rating;
+    @JsonIgnore
+    private Set<Order> orders = new HashSet<>(0);
+    private Set<Product> products = new HashSet<>(0);
     private Set<Tags> tags = new HashSet<>(0);
 
-	public Restaurant() {
-	}
+    public Restaurant() {
+    }
 
-	public Restaurant(String name, String nif, String password, String photo, String city, String direction, Set<Order> orders,
-					  Set<Product> products, Integer deliveryPrice, Integer deliveryTime, Set<Tags> tags, double rating) {
-		this.name = name;
-		this.nif = nif;
-		this.password = password;
-		this.photo = photo;
-		this.city = city;
-		this.direction = direction;
-		this.orders = orders;
-		this.products = products;
-		this.deliveryPrice = deliveryPrice;
-		this.deliveryTime = deliveryTime;
+    public Restaurant(String name, String nif, String password, String photo, String city, String direction, Set<Order> orders,
+                      Set<Product> products, Integer deliveryPrice, Integer deliveryTime, Set<Tags> tags, double rating) {
+        this.name = name;
+        this.nif = nif;
+        this.password = password;
+        this.photo = photo;
+        this.city = city;
+        this.direction = direction;
+        this.orders = orders;
+        this.products = products;
+        this.deliveryPrice = deliveryPrice;
+        this.deliveryTime = deliveryTime;
         this.tags = tags;
-		this.rating = rating;
-	}
+        this.rating = rating;
+    }
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Restaurant(String name, String nif, String password, String photo, String city, String direction,
+                      Integer deliveryPrice, Integer deliveryTime, Set<Tags> tags, double rating) {
+        this.name = name;
+        this.nif = nif;
+        this.password = password;
+        this.photo = photo;
+        this.city = city;
+        this.direction = direction;
+        this.deliveryPrice = deliveryPrice;
+        this.deliveryTime = deliveryTime;
+        this.tags = tags;
+        this.rating = rating;
+    }
 
-	@Column(name = "id", unique = true, nullable = false)
-	public Integer getId() {
-		return this.id;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    @Column(name = "id", unique = true, nullable = false)
+    public Integer getId() {
+        return this.id;
+    }
 
-	@Column(name = "name", length = 50)
-	public String getName() {
-		return this.name;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    @Column(name = "name", length = 50)
+    public String getName() {
+        return this.name;
+    }
 
-	@Column(name = "nif", unique = true, length = 9)
-	public String getNif() {
-		return this.nif;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setNif(String nif) {
-		this.nif = nif;
-	}
+    @Column(name = "nif", unique = true, length = 9)
+    public String getNif() {
+        return this.nif;
+    }
 
-	@Column(name = "password", length = 50)
-	public String getPassword() {
-		return this.password;
-	}
+    public void setNif(String nif) {
+        this.nif = nif;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    @Column(name = "password", length = 50)
+    public String getPassword() {
+        return this.password;
+    }
 
-	@Column(name = "photo", length = 50)
-	public String getPhoto() {
-		return this.photo;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setPhoto(String photo) {
-		this.photo = photo;
-	}
+    @Column(name = "photo", length = 50)
+    public String getPhoto() {
+        return this.photo;
+    }
 
-	@Column(name = "city", length = 50)
-	public String getCity() {
-		return this.city;
-	}
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
 
-	public void setCity(String city) {
-		this.city = city;
-	}
+    @Column(name = "city", length = 50)
+    public String getCity() {
+        return this.city;
+    }
 
-	@Column(name = "direction", length = 100)
-	public String getDirection() {
-		return this.direction;
-	}
+    public void setCity(String city) {
+        this.city = city;
+    }
 
-	public void setDirection(String direction) {
-		this.direction = direction;
-	}
+    @Column(name = "direction", length = 100)
+    public String getDirection() {
+        return this.direction;
+    }
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
-	public Set<Order> getOrders() {
-		return this.orders;
-	}
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
 
-	public void setOrders(Set<Order> orders) {
-		this.orders = orders;
-	}
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
+    public Set<Order> getOrders() {
+        return this.orders;
+    }
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
-	public Set<Product> getProducts() {
-		return this.products;
-	}
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
 
-	public void setProducts(Set<Product> products) {
-		this.products = products;
-	}
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
+    public Set<Product> getProducts() {
+        return this.products;
+    }
 
-	@Column(name = "delivery_time")
-	public Integer getDeliveryTime() {
-		return this.deliveryTime;
-	}
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
 
-	public void setDeliveryTime(Integer deliveryTime) {
-		this.deliveryTime = deliveryTime;
-	}
+    @Column(name = "delivery_time")
+    public Integer getDeliveryTime() {
+        return this.deliveryTime;
+    }
 
-	@Column(name = "delivery_price")
-	public Integer getDeliveryPrice() {
-		return this.deliveryPrice;
-	}
+    public void setDeliveryTime(Integer deliveryTime) {
+        this.deliveryTime = deliveryTime;
+    }
 
-	public void setDeliveryPrice(Integer deliveryPrice) {
-		this.deliveryPrice = deliveryPrice;
-	}
+    @Column(name = "delivery_price")
+    public Integer getDeliveryPrice() {
+        return this.deliveryPrice;
+    }
+
+    public void setDeliveryPrice(Integer deliveryPrice) {
+        this.deliveryPrice = deliveryPrice;
+    }
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
     public Set<Tags> getTags() {
@@ -160,12 +174,12 @@ public class Restaurant implements java.io.Serializable {
         this.tags = tags;
     }
 
-	@Column(name = "rating")
-	public double getRating() {
-		return rating;
-	}
+    @Column(name = "rating")
+    public double getRating() {
+        return rating;
+    }
 
-	public void setRating(double rating) {
-		this.rating = rating;
-	}
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
 }
