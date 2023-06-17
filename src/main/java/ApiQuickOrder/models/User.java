@@ -5,6 +5,7 @@ package ApiQuickOrder.models;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 /**
@@ -23,6 +24,7 @@ public class User implements java.io.Serializable {
 	private String phone;
 	private Integer credit;
 	private String photo;
+	@JsonIgnore
 	private Set<Order> orders = new HashSet<>(0);
 	private Set<Address> addresses = new HashSet<>(0);
 	private Set<PaymentMethod> paymentMethods = new HashSet<>(0);

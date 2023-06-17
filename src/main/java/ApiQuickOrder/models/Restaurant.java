@@ -5,6 +5,7 @@ package ApiQuickOrder.models;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 /**
@@ -24,6 +25,7 @@ public class Restaurant implements java.io.Serializable {
 	private Integer deliveryTime;
 	private Integer deliveryPrice;
 	private double rating;
+	@JsonIgnore
 	private Set<Order> orders = new HashSet<>(0);
 	private Set<Product> products = new HashSet<>(0);
     private Set<Tags> tags = new HashSet<>(0);

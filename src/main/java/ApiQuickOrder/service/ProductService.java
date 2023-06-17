@@ -15,6 +15,9 @@ public class ProductService {
     @Autowired
     private ProductRepository repository;
 
+    public Product getById(int id){
+        return repository.getById(id);
+    }
 
     public List<Product> findByRestaurant(int restaurantId){
         return repository.findByRestaurant(restaurantId);

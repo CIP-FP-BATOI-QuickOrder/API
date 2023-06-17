@@ -21,7 +21,9 @@ public class OrderLineId implements java.io.Serializable {
 		this.id = id;
 		this.orderId = orderId;
 	}
-
+	public OrderLineId(int id) {
+		this.id = id;
+	}
 	@Column(name = "id", nullable = false)
 	public int getId() {
 		return this.id;

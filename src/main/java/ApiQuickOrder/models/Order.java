@@ -39,11 +39,18 @@ public class Order implements java.io.Serializable {
 	}
 
 	public Order(Address address, Raider raider, Restaurant restaurant, User user, Double price, Date deliveryTime,
-			Integer discount, Set<OrderLine> orderLines) {
+				 Integer discount, Set<OrderLine> orderLines) {
 		this.address = address;
 		this.raider = raider;
 		this.restaurant = restaurant;
 		this.user = user;
+		this.price = price;
+		this.deliveryTime = deliveryTime;
+		this.discount = discount;
+		this.orderLines = orderLines;
+	}
+
+	public Order(Double price, Date deliveryTime, Integer discount, Set<OrderLine> orderLines) {
 		this.price = price;
 		this.deliveryTime = deliveryTime;
 		this.discount = discount;

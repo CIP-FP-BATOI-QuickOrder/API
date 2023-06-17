@@ -35,7 +35,11 @@ public class OrderLine implements java.io.Serializable {
 		this.price = price;
 		this.unitPrice = unitPrice;
 	}
-
+	public OrderLine(Integer qty, Double price, Integer unitPrice) {
+		this.qty = qty;
+		this.price = price;
+		this.unitPrice = unitPrice;
+	}
 	@EmbeddedId
 
 	@AttributeOverrides({ @AttributeOverride(name = "id", column = @Column(name = "id", nullable = false)),
