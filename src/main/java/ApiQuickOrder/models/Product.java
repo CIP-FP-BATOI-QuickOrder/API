@@ -39,6 +39,13 @@ public class Product implements java.io.Serializable {
 		this.orderLines = orderLines;
 	}
 
+	public Product(String name, String photo, String description, Double price) {
+		this.name = name;
+		this.photo = photo;
+		this.description = description;
+		this.price = price;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 
